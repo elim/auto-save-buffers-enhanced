@@ -263,7 +263,7 @@ the directories under VCS."
   (save-current-buffer
     (find-file auto-save-buffers-enhanced-svk-config-path)
     (when (file-readable-p buffer-file-name)
-      (toggle-read-only))
+      (read-only-mode))
     (goto-char (point-min))
     (while (re-search-forward "^[\t ]+\\(\\(/[^\n]+\\)+\\):[ ]*$" nil t)
       (when (and (file-exists-p (match-string 1))
