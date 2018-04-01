@@ -303,7 +303,7 @@ the directories under VCS."
                   auto-save-buffers-enhanced-include-regexps)))
     (cd current-dir)))
 
-(defun auto-save-buffers-enhanced-undo:after (&optional arg)
+(defun auto-save-buffers-enhanced-undo:after ()
   (when auto-save-buffers-enhanced-activity-flag
     (set-buffer-modified-p t)))
 
