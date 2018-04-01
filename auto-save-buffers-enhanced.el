@@ -304,6 +304,7 @@ the directories under VCS."
     (cd current-dir)))
 
 (defun auto-save-buffers-enhanced-undo:after ()
+  "Set the modified flag if needed."
   (when auto-save-buffers-enhanced-activity-flag
     (set-buffer-modified-p t)))
 
