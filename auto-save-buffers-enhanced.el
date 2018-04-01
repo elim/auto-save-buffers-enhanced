@@ -148,6 +148,10 @@ as other normal files.")
   (expand-file-name "~/.scratch")
   "*File which scratch buffer to be save into.")
 
+(defvar auto-save-buffers-enhanced-handle-undo-function-list
+  '(undo undo-tree-undo undo-tree-redo)
+  "*Change file state to `modified` after these undo functions invocations.")
+
 ;;;; Imprementation Starts from Here...
 ;;;; -------------------------------------------------------------------------
 
@@ -308,7 +312,9 @@ the directories under VCS."
   (when auto-save-buffers-enhanced-activity-flag
     (set-buffer-modified-p t)))
 
-(advice-add 'undo :after 'auto-save-buffers-enhanced-undo:after)
+(mapc #'(lambda (func)
+          (advice-add func :after 'auto-save-buffers-enhanced-undo:after))
+      auto-save-buffers-enhanced-handle-undo-function-list)
 
 (provide 'auto-save-buffers-enhanced)
 
