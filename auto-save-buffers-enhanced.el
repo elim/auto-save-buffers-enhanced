@@ -307,8 +307,8 @@ the directories under VCS."
                   auto-save-buffers-enhanced-include-regexps)))
     (cd current-dir)))
 
-(defun auto-save-buffers-enhanced-undo:after ()
-  "Set the modified flag if needed."
+(defun auto-save-buffers-enhanced-undo:after (&rest args)
+  "Set the modified flag if needed.  ARGS are not in use on this advice."
   (when auto-save-buffers-enhanced-activity-flag
     (set-buffer-modified-p t)))
 
